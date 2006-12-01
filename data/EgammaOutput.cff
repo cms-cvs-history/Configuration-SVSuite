@@ -1,22 +1,25 @@
-include "Configuration/EventContent/data/HepMCOutput.cff"
 include "Configuration/SVSuite/data/EgammaDigiOutput.cff"
 include "Configuration/SVSuite/data/EgammaRecHitsOutput.cff"
-include "Configuration/EventContent/data/EcalClustersOutput.cff"
-include "Configuration/EventContent/data/ElectronsPhotonsOutput.cff"
-include "Configuration/EventContent/data/VerticesOutput.cff"
-include "Configuration/EventContent/data/RECOTracksOutput.cff"
+include "RecoEcal/Configuration/data/RecoEcal_EventContent.cff"
+include "RecoEgamma/Configuration/data/RecoEgamma_EventContent.cff"
+include "TrackingTools/Configuration/data/TrackingTools_EventContent.cff"
+include "RecoTracker/Configuration/data/RecoTracker_EventContent.cff"
+include "RecoVertex/Configuration/data/RecoVertex_EventContent.cff"
+include "RecoPixelVertexing/Configuration/data/RecoPixelVertexing_EventContent.cff"
+include "SimG4Core/Configuration/data/SimG4Core_EventContent.cff"
 
 block EgammaOutput = {
   untracked vstring outputCommands = {
-     "drop *",
-     "keep *_electronPixelSeeds_*_*"
+     "drop *"
   }
 }
 
-replace EgammaOutput.outputCommands += HepMCOutput.outputCommands
 replace EgammaOutput.outputCommands += EgammaDigiOutput.outputCommands
 replace EgammaOutput.outputCommands += EgammaRecHitsOutput.outputCommands
-replace EgammaOutput.outputCommands += EcalClustersOutput.outputCommands
-replace EgammaOutput.outputCommands += ElectronsPhotonsOutput.outputCommands
-replace EgammaOutput.outputCommands += VerticesOutput.outputCommands
-replace EgammaOutput.outputCommands += RECOTracksOutput.outputCommands
+replace EgammaOutput.outputCommands += RecoEcalRECO.outputCommands
+replace EgammaOutput.outputCommands += RecoEgammaFEVT.outputCommands
+replace EgammaOutput.outputCommands += SimG4CoreAOD.outputCommands
+replace EgammaOutput.outputCommands += TrackingToolsRECO.outputCommands
+replace EgammaOutput.outputCommands += RecoTrackerAOD.outputCommands
+replace EgammaOutput.outputCommands += RecoVertexRECO.outputCommands
+replace EgammaOutput.outputCommands += RecoPixelVertexingRECO.outputCommands
